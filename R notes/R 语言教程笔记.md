@@ -420,7 +420,188 @@ seq(along=x)[x > 5]
 ## [1] 5 7
 ```
 
+##### 元素名
 
+```R
+ages <- c("李明"=30, "张聪"=25, "刘颖"=28)
+```
+
+或
+
+```R
+ages <- c(30, 25, 28)
+names(ages) <- c("李明", "张聪", "刘颖")
+```
+
+或
+
+```R
+ages <- setNames(c(30, 25, 28), c("李明", "张聪", "刘颖"))
+```
+
+
+
+##### 用R向量下标作映射
+
+```R
+price_map <- c(68, 88, 168)
+
+items<-c(3,2,1,1,2,2,3)
+y<-price_map[items];print(y)
+## [1] 168 88 68 88 88 168
+```
+
+```R
+sex <- c("男", "男", "女", "女", "男", "女", "女", "女", "女", "男")
+
+sex_color<-c('男'='blue','女'='red')
+```
+
+```R 
+cols<-sex_color[sex];print(cols)
+```
+
+```R
+unname(cols)
+```
+
+
+
+##### 集合运算
+
+```R
+unique(c(1,5,2,5))
+## [1] TRUE 
+c(5,6) %in% c(1,5,2)
+## [1] TRUE FALSE
+```
+
+
+
+```R
+match(5,c(1,5,2))
+## [1] 2
+match(5,c(1,5,2,5))
+## [1] 2
+match(c(2,5),c(1,5,2,5))
+## [1] 3 2
+match(c())
+```
+
+
+
+#### 6. R数据类型的性质
+
+##### 存储模式与基本类型
+
+`typeof()`函数返回一个变量或表达式的类型
+
+```R
+typeof(1:3)
+## [1] 'iiinteger'
+typeof(c(1,2,3))
+## [1] 'double'
+typeof(c(1,2.1,3))
+## [1] 'double'
+typeof(c(TRUE,NA,FALSE))
+## [1] 'logical'
+typeof('Abc')
+## [1] "character"
+typeof(factor(c('F', 'M', 'M', 'F')))
+## [1] "integer"
+```
+
+
+
+```R
+is.interger(c(1,-3))
+## [1] FALSE
+is.interger(c(1L,-3L))
+## [1] TRUE
+```
+
+
+
+`is.finite()`判断是否有限值
+
+此外还有`is.infinite`,`is.nan`等用法
+
+ 
+
+##### 类型转化与类型升档
+
+```R
+as.numeric(c(FALSE,TRUE))
+## [1] 0 1
+as.character(sqrt（1:4))
+
+```
+
+```R
+TRUE +10 
+## [1] 11
+paste('abc',1)
+## [1] 'abc 1'
+
+```
+
+##### 属性
+
+`attributes`函数
+
+```R
+x <- table(c(1,2,1,3,2,1)); print(x)
+## 
+## 1 2 3 
+## 3 2 1
+attributes(x)
+## $dim
+## [1] 3
+## 
+## $dimnames
+## $dimnames[[1]]
+## [1] "1" "2" "3"
+## 
+## 
+## $class
+## [1] "table"
+```
+
+`attr`函数
+
+用`attr(x,'属性名')`的格式读取或定义x的属性
+
+```R
+x<-c(1,3,5)
+attr(x,'theta')<-c(0,1)
+print(x)
+##[1] 1 3 5
+## attr(,"theta")
+## [1] 0 1
+```
+
+
+
+##### names 属性
+
+```R
+x<-1:5
+y<-x^2
+lmr<-lm(y ~x)
+print(names(lmr))
+```
+
+
+
+`dim`属性
+
+
+
+类属
+
+
+
+`str()`函数
 
 
 
